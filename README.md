@@ -12,24 +12,12 @@ A sleek, interactive, and fully responsive **Word Clock** featuring a custom sci
 - **Custom Font Rendering:** Integrated local **Orbitron** font for crisp, futuristic typography across all platforms.
 - **Dual Time Display:** Combines a classic textual word clock layout with a clean digital backup and ambient background glow.
 
-#MIT License
+# ©️ Terms of Use & Copyright
 
-Copyright (c) 2026 BoberISintelligent
+Copyright (c) 2026 BoberISintelligent. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This project is a proprietary individual product. All rights to the source code belong exclusively to the author and are effective starting today, August 27, 2026. 
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Unauthorized copying, modification, or distribution is prohibited, **except** under the following condition: if you wish to use or copy this code, you **must** star the original repository (`https://github.com/BoberISintelligent/Clock`). 
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+The author reserves the right to modify, update, or change these licensing terms at any time without prior notice.
