@@ -14,14 +14,13 @@ const cleanGrid = [
 const wordsMap = {
   "IT": [0, 1],
   "IS": [3, 4],
-  "QUARTER": [13, 14, 15, 16, 17, 18, 19],
+  "QUARTER": [12, 13, 14, 15, 16, 17, 18],
   "TWENTY": [22, 23, 24, 25, 26, 27],
   "FIVE_M": [28, 29, 30, 31],
   "HALF": [33, 34, 35, 36],
   "TEN_M": [38, 39, 40],
   "TO": [42, 43],
   "PAST": [44, 45, 46, 47],
-  "NINE": [50, 51, 52, 53],
   "ONE": [55, 56, 57],
   "SIX": [58, 59, 60],
   "THREE": [61, 62, 63, 64, 65],
@@ -41,7 +40,6 @@ const digitalEl = document.getElementById("digitalTime");
 let lastIndices = [];
 
 function createGrid() {
-  clock.innerHTML = "";
   cleanGrid.forEach((rowStr, row) => {
     for (let col = 0; col < rowStr.length; col++) {
       const span = document.createElement("span");
@@ -50,32 +48,12 @@ function createGrid() {
       const index = row * 11 + col;
       span.dataset.index = index;
 
-      // Привязываем группу букв (слово) для подсветки при наведении
       for (const [word, indices] of Object.entries(wordsMap)) {
         if (indices.includes(index)) {
-          span.dataset.wordGroup = indices.join(',');
+          span.dataset.word = word.replace('_M', '').replace('_H', '');
           break;
         }
       }
-
-      // Интерактив при наведении мышки на слово
-      span.addEventListener("mouseenter", () => {
-        if (span.dataset.wordGroup) {
-          span.dataset.wordGroup.split(',').forEach(i => {
-            const el = document.querySelector(`[data-index='${i}']`);
-            if (el) el.classList.add("hover-on");
-          });
-        }
-      });
-
-      span.addEventListener("mouseleave", () => {
-        if (span.dataset.wordGroup) {
-          span.dataset.wordGroup.split(',').forEach(i => {
-            const el = document.querySelector(`[data-index='${i}']`);
-            if (el) el.classList.remove("hover-on");
-          });
-        }
-      });
 
       clock.appendChild(span);
     }
@@ -87,7 +65,7 @@ function highlight(indices) {
   lastIndices = indices;
 
   document.querySelectorAll(".letter").forEach(el => {
-    el.classList.remove("on");
+    el.classList.remove("on", "active-word");
   });
 
   if (isChanged) {
@@ -95,15 +73,15 @@ function highlight(indices) {
       setTimeout(() => {
         const letter = document.querySelector(`[data-index='${i}']`);
         if (letter) {
-          letter.classList.add("on");
+          letter.classList.add("on", "active-word");
         }
-      }, delayIndex * 30);
+      }, delayIndex * 40);
     });
   } else {
     indices.forEach(i => {
       const letter = document.querySelector(`[data-index='${i}']`);
       if (letter) {
-        letter.classList.add("on");
+        letter.classList.add("on", "active-word");
       }
     });
   }
@@ -133,7 +111,7 @@ function getTimeIndices() {
       indices.push(...wordsMap["PAST"]);
     } else {
       indices.push(...wordsMap["TO"]);
-      h = (h + 1) % 24;
+      h = (h + 1) % 12;
     }
   } else {
     indices.push(...wordsMap["OCLOCK"]);
@@ -144,8 +122,11 @@ function getTimeIndices() {
     "SIX", "SEVEN", "EIGHT", "NINE", "TEN_H", "ELEVEN"
   ];
 
-  const currentHour12 = h % 12;
-  indices.push(...wordsMap[hourNames[currentHour12]]);
+  if (h % 12 === 9) {
+    indices.push(50, 51, 52, 53);
+  } else {
+    indices.push(...wordsMap[hourNames[h % 12]]);
+  }
 
   return indices;
 }
