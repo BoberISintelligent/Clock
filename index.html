@@ -4,19 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advanced Qlock</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+  <!-- Надежное подключение шрифта Orbitron с жирным начертанием -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
+  <style>
     :root {
       --bg-dark: radial-gradient(circle at center, #111 0%, #000 100%);
       --active-dark: #00ffcc;
     }
-
     body {
       margin: 0;
       background: var(--bg-dark);
       color: rgba(255, 255, 255, 0.1);
-      font-family: 'Orbitron', monospace;
+      font-family: 'Orbitron', sans-serif;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -25,7 +27,6 @@
       overflow: hidden;
       user-select: none;
     }
-
     .controls {
       position: absolute;
       top: 20px;
@@ -33,7 +34,6 @@
       display: flex;
       gap: 10px;
     }
-
     .color-select {
       background: rgba(0, 0, 0, 0.6);
       border: 2px solid var(--active-dark);
@@ -41,18 +41,17 @@
       padding: 0.5rem 1rem;
       border-radius: 10px;
       cursor: pointer;
-      font-family: inherit;
+      font-family: 'Orbitron', sans-serif;
       font-size: 1rem;
+      font-weight: 500;
       outline: none;
       transition: all 0.3s;
     }
-
     .color-select option {
       background-color: #111;
       color: var(--active-dark);
       padding: 10px;
     }
-
     .clock {
       display: grid;
       grid-template-columns: repeat(11, 1fr);
@@ -60,9 +59,9 @@
       max-width: 90vmin;
       width: 90vmin;
     }
-
     .letter {
       font-size: 3vmin;
+      font-weight: 500;
       text-align: center;
       color: rgba(255, 255, 255, 0.1);
       transition: color 0.5s ease, transform 0.5s ease, text-shadow 0.5s ease;
@@ -72,42 +71,11 @@
       justify-content: center;
       align-items: center;
     }
-
     .letter.on {
       color: var(--active-dark);
       transform: scale(1.2);
       text-shadow: 0 0 12px var(--active-dark);
     }
-
-    .letter::after {
-      content: "-";
-      position: absolute;
-      top: -2em;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.4);
-      padding: 2px 6px;
-      border-radius: 6px;
-      font-size: 1.5vmin;
-      white-space: nowrap;
-      z-index: 10;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.2s;
-    }
-
-    .letter:hover::after {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .letter.active-word::after {
-      content: attr(data-word);
-      background: rgba(0, 255, 251, 0.2);
-      color: rgb(0, 255, 204);
-    }
-
     .glow {
       position: absolute;
       top: 50%;
@@ -120,38 +88,23 @@
       pointer-events: none;
       animation: pulse 5s ease-in-out infinite;
     }
-
     @keyframes pulse {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.1);
-      }
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.1); }
     }
-
     .digital-time {
       margin-top: 20px;
       font-size: 4vmin;
+      font-weight: 500;
       color: var(--active-dark);
       text-shadow: 0 0 10px var(--active-dark);
     }
-
     .powered-by {
       margin-top: 10px;
       font-size: 2vmin;
       letter-spacing: 2px;
       color: var(--active-dark);
       opacity: 0.7;
-    }
-
-    @media (max-width: 600px) {
-      .letter {
-        font-size: 5vw;
-      }
-      .digital-time {
-        font-size: 6vw;
-      }
     }
   </style>
 </head>
